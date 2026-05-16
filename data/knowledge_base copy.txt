@@ -1,0 +1,154 @@
+ACME Corporation — Customer Support Knowledge Base
+
+================================================================================
+RETURN POLICY
+================================================================================
+
+Customers may return any product within 30 days of purchase for a full refund.
+Items must be in their original condition with all original packaging included.
+Products that have been damaged, used excessively, or modified are not eligible
+for return.
+
+To initiate a return, visit our returns portal at acme.com/returns or send an
+email to support@acme.com with your order number and reason for return.
+Refunds are processed within 5-7 business days after we receive the returned item.
+Original shipping charges are non-refundable unless the return is due to our error.
+
+For defective items, we offer an immediate replacement or full refund including
+original shipping costs. Photos of the defect may be required.
+
+================================================================================
+CONTACT INFORMATION
+================================================================================
+
+Customer Support is available Monday through Friday, 9 AM to 6 PM EST.
+
+Email: support@acme.com
+Phone: 1-800-ACME-HELP (1-800-226-3435)
+Live Chat: Available on acme.com during business hours
+Emergency line (product safety issues only): 1-800-ACME-911
+
+Our average email response time is 4 hours during business hours.
+Live chat typically connects within 2 minutes during peak hours.
+
+For bulk orders or enterprise inquiries, contact enterprise@acme.com.
+
+================================================================================
+SHIPPING POLICY
+================================================================================
+
+Standard shipping (5-7 business days): Free on orders over $50, $4.99 otherwise.
+Express shipping (2 business days): $12.99 flat rate.
+Overnight shipping (next business day): $24.99 flat rate.
+Same-day delivery (select cities only): $9.99, order by 12 PM local time.
+
+International shipping is available to 45 countries. Rates and delivery times
+vary by destination. Import duties and taxes are the responsibility of the customer.
+
+Orders placed before 2 PM EST Monday through Friday are processed same day.
+Orders placed on weekends or holidays are processed the next business day.
+
+Tracking information is emailed within 1 hour of shipment.
+
+================================================================================
+PRODUCT WARRANTY
+================================================================================
+
+All ACME products come with a 1-year limited warranty covering manufacturing
+defects and hardware failures under normal use conditions.
+
+The warranty does not cover:
+- Physical damage caused by drops, spills, or accidents
+- Water damage beyond the product's rated water resistance
+- Normal wear and tear
+- Damage from unauthorized modifications or repairs
+- Consumable parts such as batteries unless damage has occurred due to a defect
+
+To file a warranty claim, email support@acme.com with:
+1. Proof of purchase (order number or receipt)
+2. Description of the defect
+3. Photos or video of the issue
+
+Warranty claims are reviewed within 2 business days. Approved claims receive
+either a repair, replacement, or refund at ACME's discretion.
+
+Extended warranty plans are available for purchase within 30 days of buying
+a product. The ACME Care+ plan extends coverage to 3 years and includes
+accidental damage protection for $29.99/year.
+
+================================================================================
+ACCOUNT MANAGEMENT
+================================================================================
+
+Creating an account: Visit acme.com/signup and enter your email and password.
+You will receive a verification email — click the link within 24 hours to activate.
+
+Forgotten password: Go to acme.com/reset-password and enter your email address.
+A reset link will be sent within 5 minutes. Check your spam folder if not received.
+
+Changing your email address: Log in and go to Account Settings > Personal Info.
+You will need to verify the new email address before the change takes effect.
+
+Deleting your account: Send a request to support@acme.com. Accounts are
+deactivated within 48 hours. Personal data is permanently deleted within 30 days
+in compliance with our privacy policy. Order history is retained for 7 years
+for legal and tax purposes.
+
+================================================================================
+PRODUCT CATALOG
+================================================================================
+
+ACME SmartHub Pro
+- Wireless home automation controller
+- Compatible with Alexa, Google Home, and Apple HomeKit
+- Controls up to 100 smart devices
+- Price: $149.99
+- Available in: White, Black, Silver
+
+ACME PowerBank 20000
+- 20,000 mAh portable battery
+- 65W USB-C Power Delivery
+- Charges a laptop, phone, and tablet simultaneously
+- Price: $79.99
+- Available in: Black, Navy Blue
+
+ACME WebCam 4K
+- 4K Ultra HD webcam with built-in AI noise cancellation
+- 90-degree field of view, auto-framing
+- Compatible with Windows, Mac, and Linux
+- Price: $129.99
+- Available in: Black
+
+ACME ErgoDesk Mat
+- Anti-fatigue standing desk mat
+- Memory foam core, waterproof surface
+- Size: 30" x 18"
+- Price: $59.99
+- Available in: Black, Grey, Brown
+
+================================================================================
+FREQUENTLY ASKED QUESTIONS
+================================================================================
+
+Q: Can I change or cancel my order after placing it?
+A: Orders can be modified or cancelled within 1 hour of placement by contacting
+support via live chat or phone. After 1 hour, the order enters processing and
+cannot be changed, but you may return it once received.
+
+Q: Do you offer student or military discounts?
+A: Yes! Students get 15% off with a valid .edu email address. Military personnel
+and veterans receive 20% off with verified ID. Apply at acme.com/discounts.
+
+Q: Is my payment information stored securely?
+A: ACME does not store full credit card numbers. All payments are processed
+through Stripe, which is PCI DSS Level 1 compliant — the highest level of
+payment security certification.
+
+Q: Do you have a physical store?
+A: ACME is an online-only retailer. We do not have physical retail locations.
+However, our products are available at select partner retailers including
+Best Buy and Amazon.
+
+Q: How do I track my order?
+A: Tracking information is emailed to you within 1 hour of shipment. You can
+also track your order at acme.com/track using your order number.
