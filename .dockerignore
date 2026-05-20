@@ -1,0 +1,45 @@
+# .dockerignore
+# Files and folders excluded from the Docker build context
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Virtual environments — dependencies are installed inside the container
+venv/
+.venv/
+env/
+.env/
+
+# ChromaDB — built fresh inside the container on startup
+chroma_db/
+
+# Git history — not needed in the image
+.git/
+.gitignore
+
+# Solutions folder — not needed in production image
+solutions/
+
+# VS Code settings
+.vscode/
+
+# GitHub and Copilot config
+.github/
+.copilot/
+
+# Environment files (secrets should be passed via docker-compose environment)
+.env
+*.env
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Node (just in case)
+node_modules/
