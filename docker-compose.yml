@@ -1,0 +1,65 @@
+# docker-compose.yml
+# Runs two containers: RAG app + Ollama LLM service
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Usage:
+#   Start:   docker-compose up --build
+#   Stop:    docker-compose down
+#   Rebuild: docker-compose up --build (after code changes)
+#   Logs:    docker-compose logs -f app
+#
+# Once running:
+#   Chat UI:    http://localhost:8000
+#   Swagger UI: http://localhost:8000/docs
+#   Health:     http://localhost:8000/health
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+services:
+
+  # ── Ollama — Local LLM service ──────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: rag-ollama
+    ports:
+      - "11434:11434"         # Expose Ollama API (useful for debugging)
+    volumes:
+      - ollama-models:/root/.ollama   # Persist downloaded models across restarts
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    # Pull the model automatically on first start
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        ollama serve &
+        sleep 5
+        ollama pull mistral:7b-instruct
+        wait
+
+  # ── RAG App — FastAPI + Chat UI ─────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-app
+    ports:
+      - "8000:8000"           # Chat UI + API port
+    environment:
+      - CHROMA_DB_PATH=/app/chroma_db
+      - OLLAMA_BASE_URL=http://ollama:11434   # Points to the Ollama container
+    volumes:
+      - chroma-data:/app/chroma_db    # Persist vector store across restarts
+    depends_on:
+      ollama:
+        condition: service_healthy    # Wait for Ollama to be ready before starting
+    restart: unless-stopped
+
+# ── Named Volumes ─────────────────────────────────────────────────────────────
+volumes:
+  ollama-models:    # Stores Mistral model (~4.4GB) — survives container restarts
+  chroma-data:      # Stores ChromaDB vector store — no re-ingestion on restart

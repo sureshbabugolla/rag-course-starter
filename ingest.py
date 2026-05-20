@@ -27,9 +27,8 @@ def ingest_documents():
     # ── Step 1: Load documents from the data/ folder ──────────────────────────
     # Use DirectoryLoader to load all .txt files from DATA_PATH
     # Hint: DirectoryLoader(DATA_PATH, glob="**/*.txt", loader_cls=TextLoader)
-    # TODO: Write your code here
-
-
+    loader = DirectoryLoader(DATA_PATH, glob="**/*.txt", loader_cls=TextLoader)
+    documents = loader.load()
 
     print(f"✅ Loaded {len(documents)} document(s)")
 

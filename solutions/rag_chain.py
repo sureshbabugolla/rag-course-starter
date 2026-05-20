@@ -2,6 +2,7 @@
 # COMPLETE SOLUTION — only peek if you're stuck!
 # ─────────────────────────────────────────────────────────────────────────────
 
+import os
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaLLM
@@ -9,9 +10,10 @@ from langchain.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
-CHROMA_DB_PATH = "./chroma_db"
+CHROMA_DB_PATH  = os.getenv("CHROMA_DB_PATH", "./chroma_db")
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-LLM_MODEL = "mistral:7b-instruct"
+LLM_MODEL       = "mistral:7b-instruct"
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 RAG_PROMPT_TEMPLATE = """You are a helpful and precise assistant.
 Answer the user's question using ONLY the information provided in the context below.
@@ -27,12 +29,15 @@ Question: {question}
 Answer:"""
 
 
-def format_docs(docs) -> str:
+def format_docs(docs: list) -> str:
+    """Concatenate retrieved document chunks into a single context string."""
     return "\n\n".join(doc.page_content for doc in docs)
 
 
 def build_rag_chain():
-    # Step 1: Load vector store and retriever
+    """Build and return the complete LangChain LCEL RAG chain."""
+
+    # Load vector store
     embedding = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
     vectorstore = Chroma(
         persist_directory=CHROMA_DB_PATH,
@@ -40,13 +45,17 @@ def build_rag_chain():
     )
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-    # Step 2: Load LLM
-    llm = OllamaLLM(model=LLM_MODEL, temperature=0)
+    # Load LLM — base_url allows pointing to Docker Ollama container
+    llm = OllamaLLM(
+        model=LLM_MODEL,
+        base_url=OLLAMA_BASE_URL,
+        temperature=0,
+    )
 
-    # Step 3: Build prompt
+    # Build prompt
     prompt = PromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
 
-    # Step 4: Build LCEL chain
+    # Build LCEL chain
     chain = (
         {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
@@ -57,6 +66,7 @@ def build_rag_chain():
 
 
 def ask(chain, question: str) -> str:
+    """Run a question through the RAG chain and print the answer."""
     print(f"\n{'='*60}")
     print(f"❓ Question: {question}")
     print(f"{'='*60}")
