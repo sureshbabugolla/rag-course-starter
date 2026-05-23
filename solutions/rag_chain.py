@@ -1,14 +1,13 @@
-# solutions/rag_chain.py
-# COMPLETE SOLUTION — only peek if you're stuck!
-# ─────────────────────────────────────────────────────────────────────────────
-
+# solutions/rag_chain.py — COMPLETE SOLUTION
 import os
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
 from langchain_ollama import OllamaLLM
 from langchain.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+
+os.environ["ANONYMIZED_TELEMETRY"] = "false"
 
 CHROMA_DB_PATH  = os.getenv("CHROMA_DB_PATH", "./chroma_db")
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -36,7 +35,6 @@ def format_docs(docs: list) -> str:
 
 def build_rag_chain():
     """Build and return the complete LangChain LCEL RAG chain."""
-
     # Load vector store
     embedding = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
     vectorstore = Chroma(
@@ -45,17 +43,15 @@ def build_rag_chain():
     )
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-    # Load LLM — base_url allows pointing to Docker Ollama container
+    # Load LLM
     llm = OllamaLLM(
         model=LLM_MODEL,
         base_url=OLLAMA_BASE_URL,
         temperature=0,
     )
 
-    # Build prompt
+    # Build prompt and chain
     prompt = PromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
-
-    # Build LCEL chain
     chain = (
         {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
@@ -80,7 +76,6 @@ if __name__ == "__main__":
     print("🚀 Initializing RAG chain...")
     chain = build_rag_chain()
     print("✅ RAG chain ready!\n")
-
     ask(chain, "What is the return policy?")
     ask(chain, "How do I contact customer support?")
     ask(chain, "What is the capital of France?")

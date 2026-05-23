@@ -1,11 +1,11 @@
-# solutions/retriever.py
-# COMPLETE SOLUTION — only peek if you're stuck!
-# ─────────────────────────────────────────────────────────────────────────────
+# solutions/retriever.py — COMPLETE SOLUTION
+import os
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
 
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+os.environ["ANONYMIZED_TELEMETRY"] = "false"
 
-CHROMA_DB_PATH = "./chroma_db"
+CHROMA_DB_PATH  = "./chroma_db"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
@@ -36,9 +36,7 @@ if __name__ == "__main__":
         print(f"\n{'='*60}")
         print(f"🔍 Query: {query}")
         print(f"{'='*60}")
-
         results = search(query, k=3)
-
         for i, (doc, score) in enumerate(results):
             print(f"\n📄 Chunk {i+1} | Similarity Score: {score:.4f}")
             print(f"Content: {doc.page_content[:200]}...")

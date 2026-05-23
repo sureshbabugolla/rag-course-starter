@@ -7,19 +7,23 @@
 #      then press Tab to accept the suggestion.
 # ─────────────────────────────────────────────────────────────────────────────
 
-from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
 import os
 import shutil
 
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+
+# Silence ChromaDB telemetry warnings
+os.environ["ANONYMIZED_TELEMETRY"] = "false"
+
 # ── Configuration ─────────────────────────────────────────────────────────────
-CHROMA_DB_PATH = "./chroma_db"
-DATA_PATH = "./data"
+CHROMA_DB_PATH  = "./chroma_db"
+DATA_PATH       = "./data"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 50
+CHUNK_SIZE      = 500
+CHUNK_OVERLAP   = 50
 
 
 def ingest_documents():
@@ -27,8 +31,9 @@ def ingest_documents():
     # ── Step 1: Load documents from the data/ folder ──────────────────────────
     # Use DirectoryLoader to load all .txt files from DATA_PATH
     # Hint: DirectoryLoader(DATA_PATH, glob="**/*.txt", loader_cls=TextLoader)
-    loader = DirectoryLoader(DATA_PATH, glob="**/*.txt", loader_cls=TextLoader)
-    documents = loader.load()
+    # TODO: Write your code here
+
+
 
     print(f"✅ Loaded {len(documents)} document(s)")
 

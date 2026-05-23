@@ -6,11 +6,15 @@
 # Run ingest.py first before running this file!
 # ─────────────────────────────────────────────────────────────────────────────
 
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+import os
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+
+# Silence ChromaDB telemetry warnings
+os.environ["ANONYMIZED_TELEMETRY"] = "false"
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-CHROMA_DB_PATH = "./chroma_db"
+CHROMA_DB_PATH  = "./chroma_db"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
@@ -41,8 +45,6 @@ def search(query: str, k: int = 3):
 
 if __name__ == "__main__":
 
-    # ── Test with different queries ────────────────────────────────────────────
-    # Try changing these queries and observe how the retrieved chunks change!
     test_queries = [
         "What is the return policy?",
         "How do I contact customer support?",
@@ -60,7 +62,3 @@ if __name__ == "__main__":
         for i, (doc, score) in enumerate(results):
             print(f"\n📄 Chunk {i+1} | Similarity Score: {score:.4f}")
             print(f"Content: {doc.page_content[:200]}...")
-
-        # ── EXPERIMENT: notice the score for the out-of-scope query ───────────
-        # A low similarity score = the vector DB has no good match
-        # This is why we tell the LLM to say "I don't know" when context is weak

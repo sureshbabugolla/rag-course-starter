@@ -1,19 +1,19 @@
-# solutions/ingest.py
-# COMPLETE SOLUTION — only peek if you're stuck!
-# ─────────────────────────────────────────────────────────────────────────────
-
-from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+# solutions/ingest.py — COMPLETE SOLUTION
 import os
 import shutil
 
-CHROMA_DB_PATH = "./chroma_db"
-DATA_PATH = "./data"
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+
+os.environ["ANONYMIZED_TELEMETRY"] = "false"
+
+CHROMA_DB_PATH  = "./chroma_db"
+DATA_PATH       = "./data"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 50
+CHUNK_SIZE      = 500
+CHUNK_OVERLAP   = 50
 
 
 def ingest_documents():
