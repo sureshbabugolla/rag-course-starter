@@ -47,24 +47,24 @@ graph TB
     end
     
     subgraph "Application Layer"
-        API["📡 FastAPI Server<br/>/ask, /health"]
+        API["📡 FastAPI Server<br/>ask, health endpoints"]
         RAGChain["⛓️ RAG Chain<br/>LangChain LCEL"]
     end
     
     subgraph "Processing Layer"
         Retriever["🔍 Retriever<br/>Vector Similarity Search"]
         Prompt["📝 Prompt Template<br/>RAG Grounding Instructions"]
-        LLM["🤖 OllamaLLM<br/>mistral:7b-instruct"]
+        LLM["🤖 OllamaLLM<br/>mistral 7b instruct"]
     end
     
     subgraph "Data Layer"
         VectorDB["💾 ChromaDB<br/>Vector Store<br/>Persisted"]
         KnowledgeBase["📚 Knowledge Base<br/>Text Files"]
-        Embeddings["🧮 HuggingFace Embeddings<br/>sentence-transformers"]
+        Embeddings["🧮 HuggingFace Embeddings<br/>sentence transformers"]
     end
     
-    UI -->|HTTP POST /ask| API
-    CLI -->|Python invoke()| RAGChain
+    UI -->|HTTP POST| API
+    CLI -->|invoke| RAGChain
     API --> RAGChain
     RAGChain --> Retriever
     RAGChain --> Prompt
